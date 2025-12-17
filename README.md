@@ -70,7 +70,7 @@ Installation
 Rails applications.
 
 * [Install MongoDB](https://www.mongodb.org/downloads)
-* `git clone https://github.com/errbit/errbit.git`
+* `git clone https://github.com/gitclear/gitkraken-errbit.git`
 * `bundle install`
 * `bundle exec rake errbit:bootstrap`
 * `bundle exec rails server`

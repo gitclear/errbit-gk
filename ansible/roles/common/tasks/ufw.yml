@@ -26,29 +26,26 @@
     - 443
   when: inventory_hostname in groups['errbit']
 
-- name: ufw | allow incoming MNX monitoring
+- name: ufw | allow incoming CloudWatch monitoring
   ufw:
     rule: allow
     from_ip: "{{ item.ip }}"
     port: "{{ item.port }}"
   with_items:
-    - { ip: "24.231.212.64/29", port: 22 }
-    - { ip: "204.8.232.8", port: 22 }
-    - { ip: "198.62.109.40", port: 5666 }
-    - { ip: "75.126.18.114", port: 22 }
-    - { ip: "75.126.1.120", port: 22 }
-    - { ip: "75.126.1.121", port: 22 }
-    - { ip: "75.126.1.122", port: 22 }
-    - { ip: "75.126.1.123", port: 22 }
-  tags: mnx_monitoring
+    - { ip: "71.83.10.72/29", port: 22 }
+    - { ip: "66.188.27.86", port: 22 }
+    - { ip: "198.199.121.135", port: 22 }
+    - { ip: "64.225.46.67", port: 22 }
+    - { ip: "159.89.233.198", port: 22 }
+  tags: cloudwatch_monitoring
 
-- name: ufw | allow outgoing MNX monitoring
+- name: ufw | allow outgoing CloudWatch monitoring
   ufw:
     rule: allow
-    to_ip: "198.62.109.116"
+    to_ip: "159.89.233.198"
     to_port: "8086"
     direction: "out"
-  tags: mnx_monitoring
+  tags: cloudwatch_monitoring
 
 - name: Enable ufw
   ufw: state=enabled

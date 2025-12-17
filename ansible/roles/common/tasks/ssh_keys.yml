@@ -6,7 +6,7 @@
     - public_keys/jordan
     - public_keys/matthewk
     - public_keys/bill
-    - public_keys/mnxsolutions
+    - public_keys/cloudwatch
   tags: "ssh-keys"
 
 - name: authorized_keys | Set up authorized_keys for deploy
@@ -17,27 +17,21 @@
     - public_keys/jordan
     - public_keys/matthewk
     - public_keys/bill
-    - public_keys/mnxsolutions
+    - public_keys/cloudwatch
   tags: "ssh-keys"
 
-- name: authorized_keys | Remove outdated authorized_keys for root
-  authorized_key:
-    user: root
-    key: "{{ item }}"
-    state: absent
-  with_file:
-    - public_keys/alexis
-    - public_keys/eric
-    - public_keys/patrick
-  tags: "ssh-keys"
+#- name: authorized_keys | Remove outdated authorized_keys for root
+#  authorized_key:
+#    user: root
+#    key: "{{ item }}"
+#    state: absent
+#  with_file:
+#  tags: "ssh-keys"
 
-- name: authorized_keys | Remove outdated authorized_keys for deploy
-  authorized_key:
-    user: deployuser
-    key: "{{ item }}"
-    state: absent
-  with_file:
-    - public_keys/alexis
-    - public_keys/eric
-    - public_keys/patrick
-  tags: "ssh-keys"
+#- name: authorized_keys | Remove outdated authorized_keys for deploy
+#  authorized_key:
+#    user: deployuser
+#    key: "{{ item }}"
+#    state: absent
+#  with_file:
+#  tags: "ssh-keys"
