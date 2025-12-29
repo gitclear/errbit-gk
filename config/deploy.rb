@@ -7,7 +7,7 @@
 # to ./docs/deployment/capistrano.md for more info
 
 # config valid only for current version of Capistrano
-lock '3.17.3'
+lock '3.20.0'
 
 set :application, 'errbit'
 set :repo_url, 'https://github.com/gitclear/errbit-gk.git'
