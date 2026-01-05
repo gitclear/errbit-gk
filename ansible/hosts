@@ -7,4 +7,4 @@
 [web]
 
 [errbit]
-errbit.gitclear.com ansible_user=deployuser ip=8.225.232.129
+gitkraken-errbit.gitclear.com ansible_ssh_user=deployuser ansible_ssh_host=34.214.37.51 ip=34.214.37.51
