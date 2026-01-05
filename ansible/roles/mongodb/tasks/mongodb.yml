@@ -13,36 +13,24 @@
 #   errbit_production  3.9521484375GB
 #   local  0.078125GB
 ---
-- name: mongodb | Remove old MongoDB repository files
-  ansible.builtin.file:
-    path: "{{ item }}"
-    state: absent
-  loop:
-    - /etc/apt/sources.list.d/mongodb*.list
-    - /usr/share/keyrings/mongodb*.gpg
+- # Per https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-20-04
+- name: mongodb | Fetch mongo signing key
+  apt_key:
+    url="https://www.mongodb.org/static/pgp/server-4.4.asc"
+    state=present
 
-- name: mongodb | Download MongoDB 7.0 GPG key
-  ansible.builtin.get_url:
-    url: "https://pgp.mongodb.com/server-7.0.asc"
-    dest: "/usr/share/keyrings/mongodb-server-7.0.gpg"
-    mode: '0644'
-
-- name: mongodb | Add MongoDB 7.0 repository (Jammy for 24.04)
-  ansible.builtin.apt_repository:
-    repo: >
-      deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ]
-      https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse
-    filename: mongodb-org-7.0
+- name: mongodb | Add mongo source to apt
+  # WBH Aug 2021 hopefully correct translation?
+  # shell: echo "deb [ arch=amd64,arm64 ]  focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+  apt_repository:
+    repo: deb https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse
     state: present
 
-- name: mongodb | Update apt cache
-  ansible.builtin.apt:
+- name: mongodb | Install latest MongoDB release
+  apt:
+    pkg: mongodb-org
+    state: present
     update_cache: yes
-
-- name: mongodb | Install MongoDB
-  ansible.builtin.apt:
-    name: mongodb-org
-    state: present
 
 - name: mongodb | Load vars
   include_vars: ../vars/mongodb.yml
@@ -69,14 +57,11 @@
 - name: mongodb | Install python package manager
   apt: pkg=python3-pip state=present
 
-- name: mongodb | Install system-wide pymongo 4+ for MongoDB 7
-  ansible.builtin.pip:
-    name: "pymongo>=4"
-    executable: pip3
-    extra_args: "--break-system-packages"
+- name: mongodb | Install pymongo
+  pip: name=pymongo
 
 - name: mongodb | Create admin database
-  shell: mongosh {{ internal_ip_address }} --eval "db.getSiblingDB('admin');"
+  shell: mongo {{ internal_ip_address }} --eval "db.getSiblingDB('admin');"
 
 - name: mongodb | Add admin user
   mongodb_user:
