@@ -7,7 +7,7 @@
 # to ./docs/deployment/capistrano.md for more info
 
 # config valid only for current version of Capistrano
-lock '3.17.3'
+lock '3.20.0'
 
 set :application, 'errbit'
 set :repo_url, 'https://github.com/gitclear/errbit-gk.git'
@@ -29,7 +29,7 @@ set :linked_dirs, fetch(:linked_dirs, []) + %w(
 )
 
 # check out capistrano-rvm documentation
-set :rvm_ruby_version, 'ruby-2.7.6@errbit'
+set :rvm_ruby_version, 'ruby-3.3.4@errbit'
 
 namespace :errbit do
   desc "Setup config files (first time setup)"

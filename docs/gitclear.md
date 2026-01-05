@@ -1,4 +1,4 @@
-# GitClear Errbit Fork
+# GitKraken GitClear Errbit Fork
 
 Some useful details about this fork.
 
@@ -42,10 +42,10 @@ cap production deploy
 ```
 
 This will re-deploy errbit from the remote `main` branch in this repository to
-`/home/errbit/current` on errbit.gitclear.com and restart `passenger`.
+`/home/errbit/current` on gitkraken-errbit.gitclear.com and restart `passenger`.
 
-URL: https://errbit.gitclear.com
+URL: https://gitkraken-errbit.gitclear.com
 
-Login with email `errbit@errbit.gitclear.com` and the password you set for the
+Login with email `errbit@gitkraken-errbit.gitclear.com` and the password you set for the
 `ERRBIT_ADMIN_PASSWORD` environment variable in ansible-vault
 `errbit_env_content.yml`.

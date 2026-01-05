@@ -26,18 +26,12 @@
 #    key: "{{ item }}"
 #    state: absent
 #  with_file:
-#    - public_keys/alexis
-#    - public_keys/eric
-#    - public_keys/patrick
 #  tags: "ssh-keys"
-#
+
 #- name: authorized_keys | Remove outdated authorized_keys for deploy
 #  authorized_key:
 #    user: deployuser
 #    key: "{{ item }}"
 #    state: absent
 #  with_file:
-#    - public_keys/alexis
-#    - public_keys/eric
-#    - public_keys/patrick
 #  tags: "ssh-keys"

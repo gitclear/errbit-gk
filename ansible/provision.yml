@@ -36,6 +36,6 @@
     - { role: errbit, tags: [ rvm ruby bash ] }
   vars:
     - user: deployuser
-    - ruby_version: 2.7.6
+    - ruby_version: 3.3.4
     - ruby_gemset: errbit
-    - ruby_bundler_version: 2.4.16
+    - ruby_bundler_version: 2.6.9
