@@ -9,7 +9,7 @@
       - gawk
       - g++
       - make
-      - libreadline-dev
+      - libreadline6-dev
       - libssl-dev
       - libyaml-dev
       - libsqlite3-dev
@@ -33,7 +33,7 @@
   become_user: deployuser
   ansible.builtin.shell: |
     ~/.rvm/bin/rvm install \
-    --autolibs=enable \
+    --autolibs=2 \
     {{ (set_default is not defined or set_default) | ternary("--default", "") }} \
     {{ ruby_version }}
   args:

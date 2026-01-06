@@ -46,6 +46,6 @@ This will re-deploy errbit from the remote `main` branch in this repository to
 
 URL: https://gitkraken-errbit.gitclear.com
 
-Login with email `errbit@gitkraken-errbit.gitclear.com` and the password you set for the
+Login with email `errbit@errbit.gitclear.com` and the password you set for the
 `ERRBIT_ADMIN_PASSWORD` environment variable in ansible-vault
 `errbit_env_content.yml`.
